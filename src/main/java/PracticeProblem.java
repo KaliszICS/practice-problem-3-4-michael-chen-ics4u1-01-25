@@ -1,27 +1,38 @@
+import java.util.ArrayList;
+
 public class PracticeProblem {
 
 	public static void main(String args[]) {
-
+		for (int i : recaman(17)) {
+			System.out.println(i);
+		}
 	}
 
-	public static void q1() {
-		//Write question 1 code here
+	public static int[] recaman(int n) {
+		if (n <= 0) {
+			return new int[]{};
+		}
+
+		ArrayList<Integer> nums = new ArrayList<Integer>();
+
+		a(n, nums);
+
+		return nums.stream().mapToInt(i -> i).toArray();
 	}
 
-	public static void q2() {
-		//Write question 2 code here
-	}
+	public static int a(int n, ArrayList<Integer> arr) {
+		if (n == 0) {
+			return 0;
+		}
 
-	public static void q3() {
-		//Write question 3 code here
-	}
+		int prev = a(n - 1, arr);
 
-	public static void q4() {
-		//Write question 4 code here
-	}
-
-	public static void q5() {
-		//Write question 5 code here
+		if (arr.contains(prev - n) || prev - n <= 0) {
+			arr.add(prev + n);
+			return prev + n;
+		}
+		arr.add(prev - n);
+		return prev - n;
 	}
 
 }
